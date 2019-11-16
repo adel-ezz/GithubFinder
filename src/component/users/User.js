@@ -6,23 +6,24 @@ import {Link} from "react-router-dom";
 class User extends Component {
     componentDidMount() {
         this.props.getUser(this.props.match.params.login);
+        // this.props.getUserRepos(this.props.match.params.login);
         // console.log(this.props.user);
     }
 
     render() {
         const {name, avatar_url, location,following, bio, blog, login, company,html_url, followers, public_repos, public_gists, hireable} = this.props.user;
-        console.log(this.props.user);
+        // console.log(this.props.user);
         const {loading} = this.props;
 
 
-        if (this.props.loading) return <Spenner/>
+        if (loading) return <Spenner/>
         return <Fragment>
             <Link to="/" className='btn btn-light'>Back To Search</Link>
             Hireable:{' '}
             {hireable ? <i className="fas fa-check text-success"/> : <i className="fas fa-times-circle text-danger"/>}
             <div className="card grid-2" style={{ padding:'10px 2px'}}>
                 <div className="text-center">
-                    <img src={avatar_url} className="rounded-circle" alt style={{width: '150px'}}/>
+                    <img src={avatar_url} className="rounded-circle" alt={name} style={{width: '150px'}}/>
                     <h1>{name}</h1>
                     <p>Location:{location}</p>
                 </div>
